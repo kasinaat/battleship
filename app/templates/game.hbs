@@ -1,0 +1,88 @@
+<div id="winner" style="display:none">Heyyy You Won!!!!!</div>
+<div id="loser" style="display:none">Hooo You lost!!!!!</div>
+
+<div class="outer">
+<div id="score">{{point}}</div>
+  <div id="main" class="division left" style="pointer-events:none;display:inline-block">
+    <div class = "base">
+    <span>Your Base</span>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="cell" value=1   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=2   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=3   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=4   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=5   /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="cell" value=6   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=7   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=8   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=9   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=10   /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="cell" value=11   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=12   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=13   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=14   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=15   /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="cell" value=16   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=17   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=18   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=19   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=20   /></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="cell" value=21   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=22   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=23   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=24   /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="cell" value=25   /><span class="checkmark"></span></div>
+    </div>
+  </div>
+</div>
+
+  <div id="opponent" class="division right">
+
+    <div class = "base">
+      <span>Opponent Base</span>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="oppCell" value=1 {{action 'attack' on='change'}}/><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=2 {{action 'attack' on='change'}} /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=3 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=4 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=5 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="oppCell" value=6 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=7 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=8 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=9 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=10 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="oppCell" value=11 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=12 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=13 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=14 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=15 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="oppCell" value=16 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=17 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=18 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=19 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=20 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+    </div>
+    <div class="row">
+      <div class="col"><input type="checkbox" name="oppCell" value=21 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=22 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=23 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=24 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+      <div class="col"><input type="checkbox" name="oppCell" value=25 {{action 'attack' on='change'}}  /><span class="checkmark"></span></div>
+    </div>
+  </div>
+</div>
+</div>
