@@ -45,9 +45,12 @@ export default Route.extend({
      notif.info('User joined Its your turn','Start');
      document.getElementById('opponent').setAttribute("style","display:inline-block;pointer-events:");
    } else if(event.data == "WAIT"){
+     notif.clear();
      notif.info('Waiting for another user','Wait');
      document.getElementById('opponent').setAttribute("style","pointer-events:none");
    } else if(hitRegex.test(event.data)){
+     notif.clear();
+     notif.info("It's your turn")
      let values = (event.data).split("#");
      let myCell = document.getElementsByName('cell');
      if(this.myBase.includes(values[1])){
@@ -68,6 +71,7 @@ export default Route.extend({
      }
 
    } else if(trueRegex.test(event.data)){
+     notif.clear();
      notif.success("Yay! We hit em!",'success')
      this.point++;
      this.controller.set('point',this.point);
@@ -88,6 +92,7 @@ export default Route.extend({
        socket.send("WINNER");
        document.getElementById('main').setAttribute("style","pointer-events:none");
        document.getElementById('opponent').setAttribute("style","pointer-events:none");
+       notif.clear();
        notif.success("Ohoooo.. We won",'won');
      }
 
@@ -107,6 +112,7 @@ export default Route.extend({
    else{
      document.getElementById('main').setAttribute("style","pointer-events:none");
      document.getElementById('opponent').setAttribute("style","pointer-events:none");
+     notif.clear();
      notif.error("Ooo no we lost",'lost');
    }
  },
