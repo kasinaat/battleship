@@ -1,8 +1,8 @@
-.row{
+.my-row{
     display: block;
 
 }
-.col{
+.my-col{
     display: inline-block;
 }
 .outer{
@@ -45,10 +45,117 @@ input[type=checkbox]{
   margin: 0 25% 0 25%;
 }
 .btn{
-  width: 100%;
-  padding: 10px;
-  background-color: #f44250;
+  background: #263238;
+  color: #bdc3c7;
+}
+.btn:hover{
+  background: #263238;
+  color: #bdc3c7;
+}
+input[type=text],input[type=number],input[type=email],input[type=password]{
   border: 0;
-  border-radius: 2px;
-  color:white;
+  outline: 0;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 2px solid #bdc3c7;
+  margin: 10px 0;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  border-radius: 3px;
+  cursor: :auto;
+}
+.navbar-inverse{
+  background-color: #212121;
+}
+input[type=text]:hover,
+input[type=text]:focus,
+input[type=email]:hover,
+input[type=email]:focus,
+input[type=number]:hover,
+input[type=number]:focus,
+input[type=password]:hover,
+input[type=password]:focus
+{
+    border-color: #FDD835;
+    cursor:auto;
+    margin: 20px 0;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(1turn);
+    -webkit-transform: rotate(1turn);
+  }
+}
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 5em;
+  margin: 0 .5em;
+  font-size: 12px;
+  text-indent: 999em;
+  overflow: hidden;
+  animation: spin 1s infinite steps(8);
+  -webkit-animation: spin 1s infinite steps(8);
+}
+
+.small.spinner {
+  font-size: 6px;
+}
+
+.medium.spinner {
+  font-size: 18px;
+}
+
+.large.spinner {
+  font-size: 24px;
+}
+
+.spinner:before,
+.spinner:after,
+.spinner > div:before,
+.spinner > div:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2.25em; /* (container width - part width)/2  */
+  width: .5em;
+  height: 1.5em;
+  border-radius: .2em;
+  background: #eee;
+  box-shadow: 0 3.5em #eee; /* container height - part height */
+  transform-origin: 50% 2.5em; /* container height / 2 */
+  -webkit-transform-origin: 50% 2.5em; /* container height / 2 */
+}
+
+.spinner:before {
+  background: #555;
+}
+
+.spinner:after {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  background: #777;
+}
+
+.spinner > div:before {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  background: #999;
+}
+
+.spinner > div:after {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  background: #bbb;
+}
+
+.loading-container {
+  padding: 1.5em;
+  padding-left: 3em;
 }

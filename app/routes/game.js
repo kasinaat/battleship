@@ -2,6 +2,21 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  beforeModel(){
+    var self = this;
+    if(localStorage){
+      var username = localStorage.getItem("username");
+      var auth_key = localStorage.getItem("auth_token");
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET","/login?user="+username+"&token="+auth_key);
+      xhr.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 403){
+          self.transitionTo("login")
+        }
+      }
+      xhr.send();
+    }
+  },
   websockets: service(),
   socketRef: null,
   message:'',
@@ -12,7 +27,7 @@ export default Route.extend({
   notif:service('toast'),
   init(){
     this._super(...arguments);
-    const socket = this.get('websockets').socketFor('ws://localhost:8080/myserv/websocket/user');
+    const socket = this.get('websockets').socketFor('ws://172.22.125.206:8080/myserv/websocket/'+localStorage.getItem('username'));
     console.log(JSON.parse(localStorage.mybase));
     this.set('myBase',JSON.parse(localStorage.mybase));
     socket.on('open', this.myOpenHandler, this);
@@ -90,10 +105,11 @@ export default Route.extend({
      });
      if(this.controller.get('point') == 3){
        socket.send("WINNER");
+       socket.send("POINT#3#"+localStorage.getItem('username'));
        document.getElementById('main').setAttribute("style","pointer-events:none");
        document.getElementById('opponent').setAttribute("style","pointer-events:none");
        notif.clear();
-       notif.success("Ohoooo.. We won",'won');
+       notif.success("Ohoooo.. We won",'Winner');
      }
 
    } else if(falseRegex.test(event.data)){
@@ -112,12 +128,14 @@ export default Route.extend({
    else{
      document.getElementById('main').setAttribute("style","pointer-events:none");
      document.getElementById('opponent').setAttribute("style","pointer-events:none");
+     socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
      notif.clear();
      notif.error("Ooo no we lost",'lost');
    }
  },
 
  myCloseHandler(event) {
+   this.controller.set('point',0);
    console.log(`On close event has been called: ${event}`);
  },
  actions:{

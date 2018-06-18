@@ -1,0 +1,17 @@
+<div class="col-md-4"></div>
+<div class="col-md-4">
+  <table class="table table-responsive">
+    <thead>
+      <td>Gamers</td>
+      <td>Stats</td>
+    </thead>
+    <tbody>
+      {{#each model as |game|}}
+      <tr>
+        <td>{{game.player1}}--{{game.player2}}</td>
+        <td>{{game.player1Points}}--{{game.player2Points}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>

@@ -1,17 +1,32 @@
-<nav>
-  <div class='left'>
-    <ul>
-      <li>Home</li>
-      <li>Login/Signup</li>
-    </ul>
-  </div>
+<div class="loader"></div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">Battleship</a>
+    </div>
+    <ul class="nav navbar-nav">
+      {{#link-to 'application' tagName='li'}}<a>Home</a>{{/link-to}}
+      {{#if userlogged}}
+        <li><a {{action 'toHistory'}}>History</a></li>
+      {{/if}}
 
-  <div class='right'>
-    <ul>
-      <li>Home</li>
-      <li>Login/Signup</li>
+    </ul>
+    <ul class="nav navbar-nav right">
+      {{#if userlogged}}
+        {{#link-to 'user' tagName='li'}}<a>{{username}}</a>{{/link-to}}
+        {{#link-to 'logout' tagName='li'}}<a>logout</a>{{/link-to}}
+      {{/if}}
+      {{#if userNotlogged}}
+        {{#link-to 'login' tagName='li'}}<a>Login</a>{{/link-to}}
+        {{#link-to 'signup' tagName='li'}}<a>Signup</a>{{/link-to}}
+      {{/if}}
+
     </ul>
   </div>
 </nav>
-  <div class="clear"></div>
+{{#if userlogged}}
+{{#link-to 'start'}}<button class="btn btn-danger  right">Start Game</button>{{/link-to}}
+
+{{/if}}
+
 {{outlet}}
