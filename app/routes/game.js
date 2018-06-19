@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
+
   beforeModel(){
     var self = this;
     if(localStorage){
@@ -16,6 +17,7 @@ export default Route.extend({
       }
       xhr.send();
     }
+
   },
   websockets: service(),
   socketRef: null,
@@ -46,6 +48,7 @@ export default Route.extend({
    const socket = this.get('socketRef');
    socket.send("READY");
    document.getElementById('opponent').setAttribute("style","display:none");
+
  },
 
  myMessageHandler(event) {
@@ -124,18 +127,46 @@ export default Route.extend({
        }
        count++
      });
-   }
-   else{
+   } else if (event.data === "WINNER_BY_EXIT") {
+     socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
      document.getElementById('main').setAttribute("style","pointer-events:none");
      document.getElementById('opponent').setAttribute("style","pointer-events:none");
-     socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
      notif.clear();
-     notif.error("Ooo no we lost",'lost');
+     notif.success("Ohoooo.. We won",'Winner');
+     socket.close();
    }
+   if (performance.navigation.type == 1) {
+    console.info( "This page is reloaded" );
+    socket.send("WINNER_BY_EXIT");
+    document.getElementById('main').setAttribute("style","pointer-events:none");
+    document.getElementById('opponent').setAttribute("style","pointer-events:none");
+    socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
+    notif.clear();
+    notif.error("Ooo no we lost",'lost');
+    setTimeout(function(){
+      console.log(1);
+    },5000);
+    this.transitionTo('history');
+  }
  },
 
  myCloseHandler(event) {
+  //  const socket = this.get('socketRef');
+  //  if (performance.navigation.type == 1) {
+  //   console.info( "This page is reloaded" );
+  //   socket.send("WINNER_BY_EXIT");
+  //   document.getElementById('main').setAttribute("style","pointer-events:none");
+  //   document.getElementById('opponent').setAttribute("style","pointer-events:none");
+  //   socket.send("WINNER");
+  //   socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
+  //   notif.clear();
+  //   notif.error("Ooo no we lost",'lost');
+  // } else {
+  //   console.info( "This page is not reloaded");
+  // }
+
    this.controller.set('point',0);
+   this.transitionTo('history');
    console.log(`On close event has been called: ${event}`);
  },
  actions:{
