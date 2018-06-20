@@ -30,7 +30,7 @@ export default Route.extend({
   notif:service('toast'),
   init(){
     this._super(...arguments);
-    const socket = this.get('websockets').socketFor('ws://172.22.125.206:8080/battleship-server/websocket/'+localStorage.getItem('username')+'/1');
+    const socket = this.get('websockets').socketFor('ws://172.22.125.206:8080/battleship-server/websocket/'+localStorage.getItem('username'));
     console.log(JSON.parse(localStorage.mybase));
     this.set('myBase',JSON.parse(localStorage.mybase));
     socket.on('open', this.myOpenHandler, this);
@@ -135,7 +135,7 @@ export default Route.extend({
        }
        count++
      });
-   } else if ((event.data).contains("WINNER#")) {
+ } else if ((event.data).contains("WINNER#")) {
      socket.send("POINT#"+this.get(point)+"#"+localStorage.getItem('username'));
      document.getElementById('main').setAttribute("style","pointer-events:none");
      document.getElementById('opponent').setAttribute("style","pointer-events:none");
@@ -143,27 +143,6 @@ export default Route.extend({
      notif.success("Noooooo we lost the game",'Lost');
      socket.close();
    }
-   // else if (event.data === "WINNER_BY_EXIT") {
-   //   socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
-   //   document.getElementById('main').setAttribute("style","pointer-events:none");
-   //   document.getElementById('opponent').setAttribute("style","pointer-events:none");
-   //   notif.clear();
-   //   notif.success("Ohoooo.. We won",'Winner');
-   //   socket.close();
-   // }
-  //  if (performance.navigation.type == 1) {
-  //   console.info( "This page is reloaded" );
-  //   socket.send("WINNER_BY_EXIT");
-  //   document.getElementById('main').setAttribute("style","pointer-events:none");
-  //   document.getElementById('opponent').setAttribute("style","pointer-events:none");
-  //   socket.send("POINT#"+this.controller.get('point')+"#"+localStorage.getItem('username'));
-  //   notif.clear();
-  //   notif.error("Ooo no we lost",'lost');
-  //   setTimeout(function(){
-  //     console.log(1);
-  //   },5000);
-  //   this.transitionTo('history');
-  // }
  },
 
  myCloseHandler(event) {
@@ -182,7 +161,8 @@ export default Route.extend({
   // }
 
    this.controller.set('point',0);
-   // this.transitionTo('history');
+   this.transitionTo('history');
+
    console.log(`On close event has been called: ${event}`);
  },
  actions:{
