@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('logout');
   this.route('user');
   this.route('history');
+  this.route('games');
 });
 
 export default Router;

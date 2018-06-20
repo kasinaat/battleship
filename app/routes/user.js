@@ -13,5 +13,10 @@ export default Route.extend({
     xhr.send();
     console.log(json);
     return json;
+  },
+  actions:{
+    createGame(){
+      let xhr = new XMLHttpRequest();
+    }
   }
 });
