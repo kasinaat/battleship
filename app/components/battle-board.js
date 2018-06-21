@@ -6,14 +6,14 @@ export default Component.extend({
   router:service(),
   notif:service('toast'),
   myBase:null,
-
   didInsertElement() {
     this._super(...arguments);
     this.set('myBase',[])
   },
 
   actions: {
-    deploy(){
+    deploy(param){
+      let self = this;
       let notif = this.get('notif');
       let arr=[];
         var n = document.getElementsByName('cell');
@@ -28,11 +28,25 @@ export default Component.extend({
             localStorage.mybase = JSON.stringify(arr);
             // const socket = this.get('socketRef');
             // socket.send("READY");
-            this.get('router').transitionTo('game');
+            if(param == 'create'){
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST","/user");
+              xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+              xhr.send("user="+localStorage.getItem('username'));
+              xhr.onreadystatechange = function(){
+                if(this.status == 200 && this.readyState == 4){
+                  let json = JSON.parse(this.responseText);
+                  self.get('router').transitionTo('/game/'+json.gameId);
+                }
+              }
+            } else{
+                this.get('router').transitionTo('games');
+            }
+
           }else {
             notif.error("You must select 3 points",'select');
           }
-        console.log(this.points);
+        console.log(this.get("arr"));
       }
     }
 });
